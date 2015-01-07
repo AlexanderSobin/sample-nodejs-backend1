@@ -1,0 +1,69 @@
+{
+  "name": "your_name_here-Backend",
+
+  "version": "0.0.1",
+  "description": "Backend application for My Web Service",
+  "main": "main.js",
+  "scripts": {
+  },
+
+  "dependencies": {
+    "http":"*",
+    "express": "*",
+    "string": "*",
+    "querystring": "*",
+    "expresso":"*",
+    "winston":"*",
+    "forever":"*",
+    "nconf":"*",
+    "mongoose":"*",
+    "connect-mongo":"*",
+    "async":"*",
+    "apnagent":"*",
+    "express-jwt":"*",
+    "jsonwebtoken": "*",
+    "amazon-s3-url-signer":"*",
+    "lazy":"*",
+    "line-reader":"*",
+    "cluster":"*",
+    "redis":"*",
+    "newrelic":"git+https://github.com/AnthonyAkentiev/node-newrelic.git",
+    "raven":"*",
+    "connect":"*",
+    "body-parser":"*",
+    "cookie-parser":"*",
+    "cookie":"*",
+    "method-override":"*",
+    "toobusy":"*",
+    "xpath":"*",
+    "xmldom":"*",
+    "sleep":"*",
+    "knox":"*",
+    "mv":"*",
+    "recaptcha":"*",
+    "cheerio":"*",
+    "encoding":"*",
+    "iconv":"*",
+    "form-data":"*",
+    "restler":"*",
+    "pdfkit":"*",
+    "wkhtmltopdf":"git+https://github.com/AnthonyAkentiev/node-wkhtmltopdf.git",
+    "nodemailer":"0.3.31",
+    "ent":"*",
+    "bcrypt":"*"
+  },
+  "engines": {
+    "node": "*",
+    "npm": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://akentiev@bitbucket.org/akentiev/sample-nodejs-backend1.git"
+  },
+  "keywords": [
+    "Node.JS backend"
+  ],
+  "author": "Anthony Akentiev",
+  "license": "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License",
+  "gitHead": ""
+}
