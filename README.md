@@ -48,7 +48,7 @@
 
 # APIs
 
-**Create new user**
+### **Create new user**
 Will:
 * 1) Create new user with unique id
 * 2) Send e-mail to 'email' address with instructions on how to validate
@@ -65,7 +65,7 @@ Returns:
 Returns object: {statusCode: 1, shortId: 123434} 
 ```
 
-**Validate user e-mail**
+### **Validate user e-mail**
 Will:
 * 1) Find user with 'shortId'
 * 2) Check if validation is still neeeded
@@ -85,7 +85,7 @@ Returns:
 * 2) status 404 if something went wrong.
 ```
 
-**Reset password**
+### **Reset password**
 Will:
 * 1) Find user with 'email'
 * 2) Generate special 'reset' signature for that object
@@ -101,7 +101,7 @@ Returns:
 * 1) status 200 + 'OK' even on error (to fool hackers)).
 ```
 
-**Create new password**
+### **Create new password**
 Will: 
 * 1) Find user with 'shortId'
 * 2) Compare sig. If signature is different -> error
@@ -121,7 +121,7 @@ Returns:
 * 2) status 404 if something went wrong.
 ```
 
-**Login**
+### **Login**
 Will:
 * 1) Find user with 'email'
 * 2) Compare password hashes
