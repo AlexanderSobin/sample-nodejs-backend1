@@ -12,7 +12,8 @@
 * 2) Express
 * 3) MongoDB
 
-## For Ubuntu only:
+## Before you go
+### For Ubuntu only:
 * Change 'your_name_here' to desired name in all files
 * **sudo apt-get install build-essential make**
 * Install npm/node: 
