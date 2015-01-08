@@ -27,6 +27,7 @@
 * To install as a daemon: ./scripts/installdaemon.sh
 * Install **http://wkhtmltopdf.org/downloads.html** into your system
 * DO NOT FORGET TO CHANGE 'salt' in config.json! Using sample salt will lead to vulnerability!
+* Use HTTPS only (set *enable_https* to true config.json) to prevent JWT or other data stealing in the middle
 * Run tests (see below)
 
 ## Run:
