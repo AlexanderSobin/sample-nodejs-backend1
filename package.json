@@ -2,7 +2,7 @@
   "name": "your_name_here-Backend",
 
   "version": "0.0.1",
-  "description": "Backend application for My Web Service",
+  "description": "Backend for your_name_here",
   "main": "main.js",
   "scripts": {
   },
@@ -22,34 +22,19 @@
     "apnagent":"*",
     "express-jwt":"*",
     "jsonwebtoken": "*",
-    "amazon-s3-url-signer":"*",
     "lazy":"*",
-    "line-reader":"*",
     "cluster":"*",
     "redis":"*",
     "newrelic":"git+https://github.com/AnthonyAkentiev/node-newrelic.git",
-    "raven":"*",
     "connect":"*",
     "body-parser":"*",
     "cookie-parser":"*",
     "cookie":"*",
     "method-override":"*",
     "toobusy":"*",
-    "xpath":"*",
-    "xmldom":"*",
-    "sleep":"*",
-    "knox":"*",
-    "mv":"*",
-    "recaptcha":"*",
-    "cheerio":"*",
     "encoding":"*",
     "iconv":"*",
-    "form-data":"*",
-    "restler":"*",
-    "pdfkit":"*",
-    "wkhtmltopdf":"git+https://github.com/AnthonyAkentiev/node-wkhtmltopdf.git",
     "nodemailer":"0.3.31",
-    "ent":"*",
     "bcrypt":"*"
   },
   "engines": {
@@ -58,12 +43,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://akentiev@bitbucket.org/akentiev/sample-nodejs-backend1.git"
+    "url": "https://github.com/AnthonyAkentiev/sample-nodejs-backend1.git",
   },
   "keywords": [
     "Node.JS backend"
   ],
   "author": "Anthony Akentiev",
   "license": "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License",
-  "gitHead": ""
+  "gitHead": "6e64bb0c9477bcecd553c92506159304494aee91"
 }
