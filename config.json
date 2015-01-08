@@ -47,6 +47,6 @@
      "auth":{
           "min_pass_len": 6,
           "expires_minutes": 60,
-          "salt": "$3e$19$ywsY7h.c0DdxvMHgDjQih."
+          "salt": "$2a$10$ywsX7h.cOCxsvMHgDjQih."
      }
 }

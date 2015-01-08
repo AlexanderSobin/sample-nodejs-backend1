@@ -113,19 +113,19 @@ describe('Users module',function(){
 
                var p = JSON.parse(dataOut);
                assert.equal(p.statusCode,1);
-               assert.notEqual(p.id,0);
+               assert.notEqual(p.shortId,0);
 
                // 2 - check that user is in DB now
                db.UserModel.findByEmail(j.email,function(err,users){
                     assert.equal(err,null);
                     assert.equal(users.length,1);
-                    assert.equal(users[0].shortId,p.id);
+                    assert.equal(users[0].shortId,p.shortId);
                     assert.equal(users[0].validated,false);
 
-                    db.UserModel.findByShortId(p.id,function(err,users){
+                    db.UserModel.findByShortId(p.shortId,function(err,users){
                          assert.equal(err,null);
                          assert.equal(users.length,1);
-                         assert.equal(users[0].shortId,p.id);
+                         assert.equal(users[0].shortId,p.shortId);
                          assert.notEqual(users[0].validationSig,'');
 
                          userId = users[0].shortId;

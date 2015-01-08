@@ -79,6 +79,17 @@ function makeResetReport(resetLink,cb){
      });
 }
 
+function makePassChangedReport(cb){
+     var templateFile = 'email/pass_changed.html';
+     makeBasicReport(templateFile,function(err,data){
+          if (err) {
+               return cb(err);
+          }
+
+          cb(err,data);
+     });
+}
+
 function makeBasicReport(templateFile,cb){
      var serviceName = helpers.capitalizeFirst(config.get('service_name'));
      var agreementLink = config.get('mail:agreement_link');
@@ -261,8 +272,41 @@ function sendResetPassword(sendTo,resetLink,cb){
      });
 }
 
+function sendPassChanged(sendTo,cb){
+     winston.info('Sending passwrod changed e-mail to: ' + sendTo);
+
+     // 2 - make HTML e-mail from template
+     makePassChangedReport(function(err,data){
+          if(err){ 
+               return cb(err);
+          }
+          
+          var subjText = helpers.capitalizeFirst(config.get('service_name')) + ': Пароль изменен.';
+          var text     = "Пароль изменен.";
+
+          // 3 - send email with attachement
+          sendEmail(
+            sendTo,
+            subjText,
+            text,
+
+            data,  //textHtml
+            '',    //attachment
+
+            function(err,resp){
+                 if(err){
+                      return cb(err);
+                 }
+
+                 winston.info('Mail with attachment sent to...' + sendTo);
+                 cb();
+          });
+     });
+}
+
 exports.sendEmail = sendEmail;
 
 exports.sendUserValidation = sendUserValidation;
 exports.sendResetPassword = sendResetPassword;
 exports.sendRegComplete = sendRegComplete;
+exports.sendPassChanged = sendPassChanged;

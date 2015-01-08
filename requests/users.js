@@ -148,7 +148,7 @@ function createNewUser(email,pass,cb){
 function createUserContinue(user,res){
      var out = {
           statusCode: 1,
-          id: user.shortId
+          shortId: user.shortId
      };
 
      var outData = JSON.stringify(out);
@@ -351,7 +351,7 @@ app.put('/v1/users/:shortId/password',function(request, res, next){
                return next();
           }
 
-          // set new password
+          // 4 - set new password
           user.modified = Date.now();
           user.resetSig = '';
 
@@ -368,7 +368,16 @@ app.put('/v1/users/:shortId/password',function(request, res, next){
                          return next();
                     }
 
-                    res.send('OK');
+                    // 5 - send 'password has been changed' email
+                    mail_send.sendPassChanged(user.email,function(err){
+                         if(err){
+                              winston.error('Can not send email to user: ' + err);
+                              // eat this error
+                              //return next();
+                         }
+
+                         res.send('OK');
+                    });
                });
           });
      });
