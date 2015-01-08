@@ -1,4 +1,4 @@
-# Backend for <your_name_here> service sample that can: 
+# Backend for 'your_name_here' service sample that can: 
 * SignUp
 * Validate
 * LogIn 
@@ -38,12 +38,12 @@
      **sudo node main.js**
 
 * To run as a daemon:
-     **sudo /etc/init.d/<your_name_here> start**
+     **sudo /etc/init.d/'your_name_here' start**
 
 * To check out DB:
-     1. mongo
-     2. use <your_name_here> 
-     3. db.users.find()
+     mongo
+     use 'your_name_here'
+     db.users.find()
 
 # APIs
 
