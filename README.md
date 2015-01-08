@@ -13,20 +13,21 @@
 * 3) MongoDB
 
 ## For Ubuntu only:
-* -1) Change <your_name_here> to desired name in all files
-* 0) **sudo apt-get install build-essential make**
-* 1) Install npm/node: 
+* Change 'your_name_here' to desired name in all files
+* **sudo apt-get install build-essential make**
+* Install npm/node: 
      **sudo apt-get install npm nodejs**
-* 2) Before running install Mocha and Forever:
+* Before running install Mocha and Forever:
      **npm install \-\-global mocha forever**
-* 3) Install mongodb: see **scripts/installmongo.sh**
-* 4) Modify **config.json** and **package.json**
-* 5) Add valid HTTPS (SSL) certificates to cert folder
-* 6) Run **npm install**
-* 7) To install as a daemon: ./scripts/installdaemon.sh
-* 8) Install **http://wkhtmltopdf.org/downloads.html** into your system
-* 9) Run tests (see below)
+* Install mongodb: see **scripts/installmongo.sh**
+* Modify **config.json** and **package.json**
+* Add valid HTTPS (SSL) certificates to cert folder
+* Run **npm install**
+* To install as a daemon: ./scripts/installdaemon.sh
+* Install **http://wkhtmltopdf.org/downloads.html** into your system
+* Run tests (see below)
 
+## Run:
 * To run tests:
      ./run-tests.sh
 
