@@ -3,7 +3,7 @@ var application_root = __dirname;
 var express = require('express');
 
 var fs = require('fs');
-var raven = require('raven');
+//var raven = require('raven');
 var http = require('http');
 var https = require('https');
 var winston = require('winston');
