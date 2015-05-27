@@ -7,7 +7,6 @@ var helpers = require('../helpers/helpers.js');
 var fs = require('fs');
 var http = require('http');
 var assert = require('assert');
-var sleep = require('sleep');
 
 eval(fs.readFileSync('test/helpers.js')+'');
 
