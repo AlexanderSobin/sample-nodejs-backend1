@@ -43,7 +43,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/AnthonyAkentiev/sample-nodejs-backend1.git",
+    "url": "https://github.com/AnthonyAkentiev/sample-nodejs-backend1.git"
   },
   "keywords": [
     "Node.JS backend"
