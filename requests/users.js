@@ -468,5 +468,5 @@ function returnJwt(user,res){
      winston.info('User logged in: ' + user.shortId);
      console.log('-->User logged in: ' + user.shortId);
 
-     res.json({ token: token });
+     res.json({ token: token, shortId: user.shortId });
 }
