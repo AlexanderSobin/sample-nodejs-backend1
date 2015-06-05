@@ -6,18 +6,6 @@ var config = require('./config');
 
 var Schema = mongoose.Schema;
 
-var Order = new Schema({
-     //shortId: {type: String, required:false},
-
-     //signature: {type: String, required:false},
-
-     state: {type: String, requires:true},
-
-     comment: {type: String, required:false},
-
-     modified: { type: Date, default: Date.now }
-});
-
 //////
 var User = new Schema({
      // user can log in using this one too
@@ -124,11 +112,9 @@ function removeDb(cb){
 }
 
 // Exports:
-var OrderModel = mongoose.model('Order', Order);
 var UserModel = mongoose.model('User', User);
 var SubscriptionModel  = mongoose.model('Subscription', Subscription);
 
-module.exports.OrderModel = OrderModel;
 module.exports.UserModel = UserModel;
 module.exports.SubscriptionModel = SubscriptionModel;
 
