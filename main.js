@@ -1,5 +1,3 @@
-//require('newrelic');
-
 var winston = require('winston');
 var assert = require('assert');
 var cluster = require('cluster');

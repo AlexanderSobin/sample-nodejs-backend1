@@ -91,7 +91,7 @@ app.use(require('body-parser')());
 app.use(require('cookie-parser')(config.get('cookie_secret')));
 
 // We are going to protect /auth routes with JWT
-app.use('/v1/auth/', expressJwt({secret: secret}));
+app.use('/auth/', expressJwt({secret: secret}));
 
 app.use(apiCallLimit);
 

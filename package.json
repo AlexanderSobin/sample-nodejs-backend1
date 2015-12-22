@@ -25,7 +25,6 @@
     "lazy":"*",
     "cluster":"*",
     "redis":"*",
-    "newrelic":"git+https://github.com/AnthonyAkentiev/node-newrelic.git",
     "connect":"*",
     "body-parser":"*",
     "cookie-parser":"*",
@@ -34,7 +33,7 @@
     "toobusy":"*",
     "encoding":"*",
     "iconv":"*",
-    "nodemailer":"0.3.31",
+    "nodemailer": "0.7.1",
     "bcrypt":"*"
   },
   "engines": {

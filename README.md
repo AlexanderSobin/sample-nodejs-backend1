@@ -55,7 +55,7 @@ Will:
 * 2) Send e-mail to 'email' address with instructions on how to validate
 
 ```javascript
-POST /v1/users
+POST /users/v1
 
 Input: ---
 Input object: {email: 'someuser@mail.com', pass: 'ahahahahha'}
@@ -75,7 +75,7 @@ Will:
 * 5) Send 'registration complete' e-mail to user 
 
 ```javascript
-POST /v1/users/:shortId/validation?sig=1231231fsdafs
+POST /users/v1/:shortId/validation?sig=1231231fsdafs
 
 Input: 
 * shortId - this is user is that has been sent to e-mail during user creation (equals to *shortId* in 1st method response)
@@ -93,7 +93,7 @@ Will:
 * 3) Send e-mail with instructions on how to reset password
 
 ```javascript
-POST /v1/users/:email/reset_password_request
+POST /users/v1/:email/reset_password_request
 
 Input: 
 * email - this is user e-mail
@@ -110,7 +110,7 @@ Will:
 * 4) Send 'password changed' e-mail
 
 ```javascript
-PUT /v1/users/:shortId/password&sig=1231231fsdafs&new_val=MyNew123SupperPass4342
+PUT /users/v1/:shortId/password&sig=1231231fsdafs&new_val=MyNew123SupperPass4342
 
 Input: 
 * shortId - this is user is that has been sent to e-mail during prev.step (equals to *shortId* in 1st method response)
@@ -129,7 +129,7 @@ Will:
 * 3) Send JWT that can be used as a 'auth token' later
 
 ```javascript
-POST /v1/users/:email/login
+POST /users/v1/:email/login
 
 Input: 
 * email - this is user e-mail

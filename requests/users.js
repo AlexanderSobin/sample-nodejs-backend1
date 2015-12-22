@@ -10,7 +10,7 @@ var bcrypt = require('bcrypt');
 // 
 // Params: shortId
 // Returns full user tuple
-app.get('/v1/auth/users/:shortId',function(request, res, next) {
+app.get('/auth/users/v1/:shortId',function(request, res, next) {
      // TODO:
 
 });
@@ -20,7 +20,7 @@ app.get('/v1/auth/users/:shortId',function(request, res, next) {
 //
 // Body params: {email: '', pass: ''}
 // Returns {shortId: '123456789'} or 404
-app.post('/v1/users',function(request, res, next) {
+app.post('/users/v1',function(request, res, next) {
      if(typeof(request.body)==='undefined' || request.body===null){
           return next();
      } 
@@ -161,7 +161,7 @@ function createUserContinue(user,res){
 // Params: signature
 //
 // Returns: redirection to 'OK' or 'BAD' pages
-app.post('/v1/users/:shortId/validation',function(request, res, next){
+app.post('/users/v1/:shortId/validation',function(request, res, next){
      if(typeof(request.params.shortId)==='undefined'){
           winston.error('No shortId');
           return next();
@@ -231,7 +231,7 @@ app.post('/v1/users/:shortId/validation',function(request, res, next){
 
 // Send e-mail with 'reset your password' text.
 // this method always returns 'OK' to cheat attacker. 
-app.post('/v1/users/:email/reset_password_request',function(request, res, next){
+app.post('/users/v1/:email/reset_password_request',function(request, res, next){
      winston.info('Reset password request');
      if(typeof(request.params.email)==='undefined'){
           winston.error('No email');
@@ -294,7 +294,7 @@ app.post('/v1/users/:email/reset_password_request',function(request, res, next){
 });
 
 // Create new password (after reset was requested)
-app.put('/v1/users/:shortId/password',function(request, res, next){
+app.put('/users/v1/:shortId/password',function(request, res, next){
      if(typeof(request.params.shortId)==='undefined'){
           winston.error('No shortId');
           return next();
@@ -387,7 +387,7 @@ app.put('/v1/users/:shortId/password',function(request, res, next){
 //
 // Body params: { password: ''}
 // Returns: 401 or good JSON web token
-app.post('/v1/users/:email/login', function (request, res, next) {
+app.post('/users/v1/:email/login', function (request, res, next) {
      winston.info('AUTH call');
 
      if(typeof(request.params.email)==='undefined'){
