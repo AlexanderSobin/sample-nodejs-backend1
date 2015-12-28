@@ -387,7 +387,7 @@ app.put('/users/v1/:shortId/password',function(request, res, next){
 //
 // Body params: { password: ''}
 // Returns: 401 or good JSON web token
-app.post('/users/v1/:email/login', function (request, res, next) {
+app.post('/users/:email/login/v1', function (request, res, next) {
      winston.info('AUTH call');
 
      if(typeof(request.params.email)==='undefined'){

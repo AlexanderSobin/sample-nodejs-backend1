@@ -145,7 +145,7 @@ describe('Users module',function(){
 
      it('should not login if not validated yet',function(done){
           var email = helpers.encodeUrlDec('anthony.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/login';
+          var url = '/users/' + email + '/login/v1';
 
           var j = {
                pass: 'onetwo'
@@ -230,7 +230,7 @@ describe('Users module',function(){
 
      it('should not login if bad password',function(done){
           var email = helpers.encodeUrlDec('anthony.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/login';
+          var url = '/users/' + email + '/login/v1';
 
           var j = {
                pass: 'shitsomw'
@@ -249,7 +249,7 @@ describe('Users module',function(){
 
      it('should not login if bad email',function(done){
           var email = helpers.encodeUrlDec('nono@gmail.com');
-          var url = '/users/v1/' + email + '/login';
+          var url = '/users/' + email + '/login/v1';
 
           var j = {
                pass: 'onetwo'
@@ -268,7 +268,7 @@ describe('Users module',function(){
 
      it('should login if everything OK',function(done){
           var email = helpers.encodeUrlDec('anthony.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/login';
+          var url = '/users/' + email + '/login/v1';
 
           var j = {
                pass: 'onetwo'

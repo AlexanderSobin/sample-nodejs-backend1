@@ -129,7 +129,7 @@ Will:
 * 3) Send JWT that can be used as a 'auth token' later
 
 ```javascript
-POST /users/v1/:email/login
+POST /users/:email/login/v1
 
 Input: 
 * email - this is user e-mail
