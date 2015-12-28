@@ -75,7 +75,7 @@ Will:
 * 5) Send 'registration complete' e-mail to user 
 
 ```javascript
-POST /users/v1/:shortId/validation?sig=1231231fsdafs
+POST /users/:shortId/validation/v1/?sig=1231231fsdafs
 
 Input: 
 * shortId - this is user is that has been sent to e-mail during user creation (equals to *shortId* in 1st method response)
@@ -93,7 +93,7 @@ Will:
 * 3) Send e-mail with instructions on how to reset password
 
 ```javascript
-POST /users/v1/:email/reset_password_request
+POST /users/:email/reset_password_request/v1
 
 Input: 
 * email - this is user e-mail

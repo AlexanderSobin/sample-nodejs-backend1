@@ -161,7 +161,7 @@ function createUserContinue(user,res){
 // Params: signature
 //
 // Returns: redirection to 'OK' or 'BAD' pages
-app.post('/users/v1/:shortId/validation',function(request, res, next){
+app.post('/users/:shortId/validation/v1',function(request, res, next){
      if(typeof(request.params.shortId)==='undefined'){
           winston.error('No shortId');
           return next();
@@ -231,7 +231,7 @@ app.post('/users/v1/:shortId/validation',function(request, res, next){
 
 // Send e-mail with 'reset your password' text.
 // this method always returns 'OK' to cheat attacker. 
-app.post('/users/v1/:email/reset_password_request',function(request, res, next){
+app.post('/users/:email/reset_password_request/v1',function(request, res, next){
      winston.info('Reset password request');
      if(typeof(request.params.email)==='undefined'){
           winston.error('No email');

@@ -163,7 +163,7 @@ describe('Users module',function(){
 
      it('should not send <reset password> if still not validated',function(done){
           var email = helpers.encodeUrlDec('anthony.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/reset_password_request';
+          var url = '/users/' + email + '/reset_password_request/v1';
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -176,7 +176,7 @@ describe('Users module',function(){
      })
 
      it('should not validate user without signature',function(done){
-          var url = '/users/v1/' + userId + '/validation';
+          var url = '/users/' + userId + '/validation/v1';
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -186,7 +186,7 @@ describe('Users module',function(){
      })
 
      it('should not validate user without valid user ID',function(done){
-          var url = '/users/v1/' + '1234' + '/validation';
+          var url = '/users/' + '1234' + '/validation/v1';
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -196,7 +196,7 @@ describe('Users module',function(){
      })
 
      it('should validate user',function(done){
-          var url = '/users/v1/' + userId + '/validation?sig=' + signature;
+          var url = '/users/' + userId + '/validation/v1/?sig=' + signature;
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -218,7 +218,7 @@ describe('Users module',function(){
      })
 
      it('should not validate user again',function(done){
-          var url = '/users/v1/' + userId + '/validation?sig=' + signature;
+          var url = '/users/' + userId + '/validation/v1/?sig=' + signature;
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -292,7 +292,7 @@ describe('Users module',function(){
 
      it('should not send <reset password> if bad user',function(done){
           var email = helpers.encodeUrlDec('a.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/reset_password_request';
+          var url = '/users/' + email + '/reset_password_request/v1';
 
           postData(9091,url,'',function(err,statusCode,h,dataOut){
                assert.equal(err,null);
@@ -307,7 +307,7 @@ describe('Users module',function(){
      // WARNING: this code sends real e-mails! )))
      it('should reset password - send email',function(done){
           var email = helpers.encodeUrlDec('anthony.akentiev@gmail.com');
-          var url = '/users/v1/' + email + '/reset_password_request';
+          var url = '/users/' + email + '/reset_password_request/v1';
 
           //console.log('-->D: ');
           //console.log(data);
