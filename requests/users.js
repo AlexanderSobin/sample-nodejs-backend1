@@ -294,7 +294,7 @@ app.post('/users/:email/reset_password_request/v1',function(request, res, next){
 });
 
 // Create new password (after reset was requested)
-app.put('/users/v1/:shortId/password',function(request, res, next){
+app.put('/users/:shortId/password/v1',function(request, res, next){
      if(typeof(request.params.shortId)==='undefined'){
           winston.error('No shortId');
           return next();

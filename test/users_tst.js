@@ -334,7 +334,7 @@ describe('Users module',function(){
                var sig = users[0].resetSig;
                var oldPass = users[0].password;
                
-               var url = '/users/v1/' + userId + '/password?sig=' + sig + '&new_val=' + 'new_Pass';
+               var url = '/users/' + userId + '/password/v1/?sig=' + sig + '&new_val=' + 'new_Pass';
                putData(9091,url,'',function(err,statusCode,headers,dataOut){
                     assert.equal(err,null);
                     assert.equal(statusCode,200);

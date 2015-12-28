@@ -110,7 +110,7 @@ Will:
 * 4) Send 'password changed' e-mail
 
 ```javascript
-PUT /users/v1/:shortId/password&sig=1231231fsdafs&new_val=MyNew123SupperPass4342
+PUT /users/:shortId/password/v1/&sig=1231231fsdafs&new_val=MyNew123SupperPass4342
 
 Input: 
 * shortId - this is user is that has been sent to e-mail during prev.step (equals to *shortId* in 1st method response)
