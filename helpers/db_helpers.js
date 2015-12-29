@@ -1,7 +1,12 @@
 var db = require('../db.js');
+var config = require('../config.js');
+
+var helpers = require('./helpers.js');
 
 var winston = require('winston');
 var assert = require('assert');
+
+var bcrypt = require('bcrypt');
 
 //////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////
@@ -79,8 +84,63 @@ function getUser(currentUser,shortId,cb){
      });
 }
 
+function createNewUser(name,lastName,email,pass,facebookID,needValidation,cb){
+     var user = new db.UserModel; 
+     user.email = email;
+
+     // hash, salt
+     bcrypt.hash(pass, config.get('auth:salt'), function(err, hash) {
+          if(err){
+               winston.error('Can not gen hash: ' + err);
+               return cb(err);
+          }
+
+          user.password = hash;
+          user.created = user.modified = Date.now();
+          user.validated = !needValidation;
+          user.validationSig = helpers.generateValidationSig(user.email,user.pass);
+          user.comment = '';
+          user.facebookID = facebookID;
+          user.name = name;
+          user.lastName = lastName;
+
+          generateNewUserId(function(id){
+               user.shortId = id;
+
+               // 3 - return
+               user.save(function(err){
+                    if(err){
+                         winston.error('Can not save user to DB: ' + err);
+                         return cb(err);
+                    }
+
+                    winston.info('User created: ' + user.shortId);
+
+                    var sub = new db.SubscriptionModel;
+                    sub.userShortId = id;
+                    sub.type = 1;       // free
+                    sub.created = sub.modified = user.created;
+
+                    // TODO: configure...
+                    // add 30 days 
+                    sub.expires.setDate(sub.created.getDate() + 30);
+
+                    sub.save(function(err){
+                         if(err){
+                              winston.error('Can not save sub to DB: ' + err);
+                              return cb(err);
+                         }
+
+                         return cb(null,user);
+                    });
+               });
+          });
+     });
+}
+
 /////////////////////////////////////////////
 exports.findUserByEmail = findUserByEmail;
 exports.generateNewUserId = generateNewUserId;
 
 exports.getUser = getUser;
+exports.createNewUser = createNewUser;

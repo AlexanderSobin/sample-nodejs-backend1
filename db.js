@@ -14,6 +14,9 @@ var User = new Schema({
      password: {type: String, required: true},
      validated: {type:Boolean, required: true},
 
+     // optional
+     facebookID: {type: String, required:false},
+
      validationSig: {type: String, required: false},
      resetSig: {type: String, required: false},
 
@@ -31,6 +34,9 @@ User.statics.findByShortId = function(id,cb){
      this.find({ shortId: id }, cb);
 }
 
+User.statics.findByFacebookID = function(id,cb){
+     this.find({facebookID: id}, cb);
+}
 
 //////////////////////////////////////////////////
 //////////////////////////////////////////////////

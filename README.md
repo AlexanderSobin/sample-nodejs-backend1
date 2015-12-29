@@ -6,6 +6,7 @@
 * Do all e-mail processing
 * Handle HTTPS
 * Use JWT for auth
+* Facebook login
 
 ## Main used technologies: MEAN stack
 * 1) Node.JS
@@ -138,4 +139,26 @@ Returns:
 * 1) status 200 + JWT json object.
 * 2) status 404 if something went wrong.
 * 3) status 401 if wrong password. 
+```
+
+### **Facebook Login**
+To get *token* and *user_id* see 'frontend_sample/facebook_login.html'.
+
+Will:
+* 1) Log in user through FacebookAPI
+* 2) If user already exists in our DB -> return JWT
+* 3) If user does not exist -> create him -> return JWT
+
+```javascript
+POST /facebook_login/v1
+
+Input: 
+* token - Logged in user token 
+* user_id - Logged in user ID 
+
+Input object: { token: '123123123123123', user_id: '123'}
+Returns: 
+* 1) status 200 + JWT json object.
+* 2) status 404 if something went wrong.
+* 3) status 401 if wrong token (or expired) or user_id.
 ```

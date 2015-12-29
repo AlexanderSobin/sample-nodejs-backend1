@@ -81,7 +81,11 @@ app.post('/users/v1',function(request, res, next) {
           }
 
           // 2 - create user + subscription
-          createNewUser(email,pass,function(err,user){
+          var name = request.body.name || '';           // could be empty
+          var lastName = request.body.last_name || '';  // could be empty
+
+          var needValidation = true;
+          db_helpers.createNewUser(name,lastName,email,pass,undefined,needValidation,function(err,user){
                if(err || typeof(user)==='undefined'){
                     winston.error('Can not create new user: ' + err);
                     return next();
@@ -109,56 +113,6 @@ app.post('/users/v1',function(request, res, next) {
      });
 
 });
-
-function createNewUser(email,pass,cb){
-     var user = new db.UserModel; 
-     user.email = email;
-
-     // hash, salt
-     bcrypt.hash(pass, config.get('auth:salt'), function(err, hash) {
-          if(err){
-               winston.error('Can not gen hash: ' + err);
-               return cb(err);
-          }
-
-          user.password = hash;
-
-          user.created = user.modified = Date.now();
-          user.validated = false;
-          user.validationSig = helpers.generateValidationSig(user.email,user.pass);
-          user.comment = '';
-
-          db_helpers.generateNewUserId(function(id){
-               user.shortId = id;
-
-               // 3 - return
-               user.save(function(err){
-                    if(err){
-                         winston.error('Can not save user to DB: ' + err);
-                         return cb(err);
-                    }
-
-                    winston.info('User created: ' + user.shortId);
-
-                    var sub = new db.SubscriptionModel;
-                    sub.userShortId = id;
-                    sub.type = 1;       // free
-                    sub.created = sub.modified = user.created;
-                    // add 30 days 
-                    sub.expires.setDate(sub.created.getDate() + 30);
-
-                    sub.save(function(err){
-                         if(err){
-                              winston.error('Can not save sub to DB: ' + err);
-                              return cb(err);
-                         }
-
-                         return cb(null,user);
-                    });
-               });
-          });
-     });
-}
 
 function createUserContinue(user,res){
      var out = {
