@@ -134,6 +134,7 @@ app.get('/prepShutdown', function(req, res) {
 
 // This is main APIs file
 eval(fs.readFileSync('requests/users.js')+'');
+eval(fs.readFileSync('requests/facebook.js')+'');
 eval(fs.readFileSync('requests/static_pages.js')+'');
 
 function initDb(dbInit){

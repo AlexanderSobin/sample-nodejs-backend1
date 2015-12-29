@@ -48,5 +48,11 @@
           "min_pass_len": 6,
           "expires_minutes": 60,
           "salt": "$2a$10$ywsX7h.cOCxsvMHgDjQih."
+     },
+
+     "facebookLogin":{
+          "appID"      : "GET_THIS_ON_FACEBOOK",
+          "appSecret"  : "GET_THIS_ON_FACEBOOK",
+          "callbackURL": "http://tst.net/facebook_callback"
      }
 }
