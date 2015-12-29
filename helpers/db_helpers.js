@@ -43,5 +43,44 @@ function generateNewUserId(cb){
      });
 }
 
+function getUser(currentUser,shortId,cb){
+     if(!helpers.validateShortId(shortId)){
+          winston.error('Bad shortId');
+          return cb(null,null);
+     }
+
+     if(currentUser.id!==shortId){
+          winston.error('DATA for DIFFERENT ID is asked. HACKER DETECTED!!! ' + 
+               currentUser.id + ' -> ' + shortId);
+
+          return cb(null,null);
+     }
+
+     db.UserModel.findByShortId(shortId,function(err,users){
+          if(err){
+               winston.error('Error: ' + err);
+               return cb(err,null);
+          }
+
+          if(typeof(users)==='undefined' || !users.length){
+               winston.error('No such user: ' + shortId);
+               return cb(null,null);
+          }
+
+          // 2 - check if already validated
+          assert.equal(users.length<=1,true);
+          var user = users[0];
+          if(!user.validated){
+               winston.error('User not validated: ' + shortId);
+               return cb(null,null);
+          }
+
+          return cb(null,user);
+     });
+}
+
+/////////////////////////////////////////////
 exports.findUserByEmail = findUserByEmail;
 exports.generateNewUserId = generateNewUserId;
+
+exports.getUser = getUser;

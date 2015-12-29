@@ -11,8 +11,23 @@ var bcrypt = require('bcrypt');
 // Params: shortId
 // Returns full user tuple
 app.get('/auth/users/v1/:shortId',function(request, res, next) {
-     // TODO:
+     if(typeof(request.params.shortId)==='undefined'){
+          winston.error('No shortId');
+          return next();
+     }
 
+     var shortId = request.params.shortId;
+     // req.user contains data from JWT (this route is only available for auth users)
+     // getUser will compare id with shortId and deny any "HACKER" calls )))
+     db_helpers.getUser(req.user,shortId,function(err,user){
+          if(err){
+               // err message is already printed to winston
+               return next(); // 404 with no error
+          }
+
+          // TODO: add here your logics
+
+     });
 });
 
 
