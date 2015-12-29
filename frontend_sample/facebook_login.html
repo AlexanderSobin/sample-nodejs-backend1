@@ -17,7 +17,14 @@
         // for FB.getLoginStatus().
         if (response.status === 'connected') {
             // Logged into your app and Facebook.
-            console.log('-->>> Logged In to Facebook! RESPONSE is:');
+            console.log('-->>> Logged In to Facebook!');
+            console.log(response.authResponse.accessToken);
+
+            document.getElementById('token').innerHTML =
+                    'Token is: ' + response.authResponse.accessToken;
+
+            document.getElementById('facebook-id').innerHTML =
+                    'Facebook ID is: ' + response.authResponse.userID;
 
             testAPI();
         } else if (response.status === 'not_authorized') {
@@ -74,7 +81,7 @@
         if (d.getElementById(id)) return;
         js = d.createElement(s);
         js.id = id;
-        js.src = "//connect.facebook.net/en_US/sdk.js";
+        js.src = "http://connect.facebook.net/en_US/sdk.js";
         fjs.parentNode.insertBefore(js, fjs);
     }(document, 'script', 'facebook-jssdk'));
 
@@ -103,6 +110,12 @@ the FB.login() function when clicked.
 </fb:login-button>
 
 <div id="status">
+</div>
+
+<div id="token">
+</div>
+
+<div id="facebook-id">
 </div>
 
 </body>
