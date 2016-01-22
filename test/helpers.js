@@ -1,6 +1,6 @@
 
 function getData(port,url,authToken,cb){
-     var post_options = {
+     var opts = {
           host: 'localhost',
           port: port,
           path: url,
@@ -10,10 +10,10 @@ function getData(port,url,authToken,cb){
      };
 
      if(authToken!==''){
-          post_options.headers['Authorization'] = 'Bearer ' + authToken;
+          opts.headers['Authorization'] = 'Bearer ' + authToken;
      }
 
-     var req = http.request(post_options, function (res) {
+     var req = http.request(opts, function (res) {
           var dataOut = '';
           res.on('data', function (chunk) {
                dataOut += chunk;
@@ -29,32 +29,45 @@ function getData(port,url,authToken,cb){
 }
 
 function postData(port,url,post_data,cb){
-     commonRequest('POST',port,url,post_data,cb);
+     commonRequest('POST',port,url,post_data,'',cb);
+}
+function postDataAuth(port,url,post_data,authToken,cb){
+     commonRequest('POST',port,url,post_data,authToken,cb);
 }
 
-function deleteData(port,url,post_data,cb){
-     commonRequest('DELETE',port,url,post_data,cb);
+function deleteData(port,url,cb){
+     commonRequest('DELETE',port,url,'','',cb);
+}
+function deleteDataAuth(port,url,authToken,cb){
+     commonRequest('DELETE',port,url,'',authToken,cb);
 }
 
 function putData(port,url,post_data,cb){
-     commonRequest('PUT',port,url,post_data,cb);
+     commonRequest('PUT',port,url,post_data,'',cb);
+}
+function putDataAuth(port,url,post_data,authToken,cb){
+     commonRequest('PUT',port,url,post_data,authToken,cb);
 }
 
-function commonRequest(httpVerb,port,url,post_data,cb){
+function commonRequest(httpVerb,port,url,post_data,authToken,cb){
      var len = Buffer.byteLength(post_data, 'utf8');
 
-     var post_options = {
+     var opts = {
           host: 'localhost',
           port: port,
           path: url,
           method: httpVerb,
           headers: {
-          'Content-Type': 'application/json',
-          'Content-Length': len
+               'Content-Type': 'application/json',
+               'Content-Length': len
           }
      };
 
-     var req = http.request(post_options, function (res) {
+     if(authToken!==''){
+          opts.headers['Authorization'] = 'Bearer ' + authToken;
+     }
+
+     var req = http.request(opts, function (res) {
           var dataOut = '';
           res.on('data', function (chunk) {
                dataOut += chunk;
