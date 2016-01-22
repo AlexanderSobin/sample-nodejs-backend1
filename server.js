@@ -3,11 +3,13 @@ var application_root = __dirname;
 var express = require('express');
 
 var fs = require('fs');
-//var raven = require('raven');
 var http = require('http');
 var https = require('https');
 var winston = require('winston');
 var expressJwt = require('express-jwt');
+
+// on some machines 'toobusy' has compilation problems due to version mismatch
+// if it happens -> remove it)
 var toobusy = require('toobusy');
 
 var config = require('./config');
@@ -77,8 +79,6 @@ function rawBody(req, res, next) {
      next();
 }
 
-//app.use(raven.middleware.express(config.get('sentry')));
-
 // allow HTTP method override
 app.use(require('method-override')());
 
@@ -107,13 +107,28 @@ app.use(function(req,res,next){
 });
 
 app.use(function(err, req, res, next){
-     console.error(err.stack);
+
+     switch (err.name) {
+     // this happens when token expires too 
+     // so handle that in your frontend and redirect to '/login.html'
+     case "UnauthorizedError":
+          return res.status(401).send('');
+     case "BadRequestError":
+     case "UnauthorizedAccessError":
+     case "NotFoundError":
+          break;
+     default:
+          break;
+     }
+
+     winston.error('ERROR detected: ' + err);
+     winston.error(err.stack);
+
      res.send(500, 'Something went wrong! Contact administrator');
 });
 
 // Remove X-Powered-by: Express header...
 app.disable('x-powered-by');
-
 
 // Graceful shutdown
 app.get('/prepShutdown', function(req, res) {
@@ -163,6 +178,8 @@ function startHttps(https_port){
           ca: ca,
           cert: certificate,
           key: privateKey, 
+
+          // TODO: check this out!
 
           //requestCert:        true
           //rejectUnauthorized: true 
