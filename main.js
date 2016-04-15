@@ -7,9 +7,6 @@ var db = require('./db');
 var server = require('./server');
 
 //////////// Params:
-var nodeUserGid = config.get('process_user');
-var nodeUserUid = config.get('process_group');
-
 if(config.get("cluster") && cluster.isMaster) {
      // Count the machine's CPUs
      //var cpuCount = require('os').cpus().length + 2;
@@ -98,6 +95,23 @@ if(config.get('enable_https')){
      winston.info('Listening (https) on ' + https_port);
 }
 
-process.setgid(nodeUserGid);
-process.setuid(nodeUserUid);
+// If we run under root -> reduce rights
+// Notice that running under root is required when we start under
+// daemon/forever. Or if we use 'priveleged ports' (not recommended!)
+//
+// If we run this code under Docker container -> then we run
+// it under 'non-root' account that is GOOD. Just set some port like 8080
+// to EXPOSE from here
+var nodeUserGid = config.get('process_user');
+var nodeUserUid = config.get('process_group');
+
+if(!process.getuid()){
+     // crash
+     //console.log('DO NOT RUN UNDER ROOT!!!');
+     //assert.equal(0,1);	
+
+     console.log('WARNING: Reducing rights from ROOT to ' + nodeUserUid);
+     process.setgid(nodeUserGid);
+     process.setuid(nodeUserUid);
+}
 
