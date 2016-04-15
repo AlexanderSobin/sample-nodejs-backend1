@@ -23,7 +23,7 @@ function changeTemplateVar(data,oldVal,newVal){
 }
 
 function makeValidationReport(validationLink,cb){
-     var templateFile = 'email/user_validation.html';
+     var templateFile = 'email/' + config.get('mail:lang') + '/user_validation.html';
      makeBasicReport(templateFile,function(err,data){
           if (err) {
                return cb(err);
@@ -42,7 +42,8 @@ function makeValidationReport(validationLink,cb){
 }
 
 function makeRegComplete(cb){
-     var templateFile = 'email/reg_complete.html';
+     var templateFile = 'email/' + config.get('mail:lang') + '/reg_complete.html';
+
      makeBasicReport(templateFile,function(err,data){
           if (err) {
                return cb(err);
@@ -61,7 +62,7 @@ function changeVar(data,varName,changeTo){
 }
 
 function makeResetReport(resetLink,cb){
-     var templateFile = 'email/reset_password.html';
+     var templateFile = 'email/' + config.get('mail:lang') + '/reset_password.html';
      makeBasicReport(templateFile,function(err,data){
           if (err) {
                return cb(err);
@@ -80,7 +81,7 @@ function makeResetReport(resetLink,cb){
 }
 
 function makePassChangedReport(cb){
-     var templateFile = 'email/pass_changed.html';
+     var templateFile = 'email/' + config.get('mail:lang') + '/pass_changed.html';
      makeBasicReport(templateFile,function(err,data){
           if (err) {
                return cb(err);

@@ -29,6 +29,8 @@
      },
 
      "mail":{
+          "lang": "eng",
+
           "service":"yandex",
           "user":"noreply@your_name_here.ru",
           "pass":"",
