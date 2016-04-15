@@ -35,10 +35,12 @@
      ./run-tests.sh
 
 * To run single test:
+     **npm test**
+     or
      **mocha \-\-reporter spec -g my_test**
 
 * To run as a console application:
-     **sudo node main.js**
+     **node main.js**
 
 * To run as a daemon:
      **sudo /etc/init.d/'your_name_here' start**

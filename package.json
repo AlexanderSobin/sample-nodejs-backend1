@@ -3,14 +3,14 @@
   "version": "0.0.1",
   "description": "Backend for your_name_here",
   "main": "main.js",
-  "scripts": {},
+  "scripts": {
+    "test": "mocha --reporter spec -t 10000" 
+  },
   "dependencies": {
-    "apnagent": "*",
     "async": "*",
     "bcrypt": "*",
     "body-parser": "*",
     "cluster": "*",
-    "connect": "*",
     "connect-mongo": "*",
     "cookie": "*",
     "cookie-parser": "*",
@@ -19,19 +19,15 @@
     "express-jwt": "*",
     "expresso": "*",
     "facebook-node-sdk": "^0.2.0",
-    "forever": "*",
     "http": "*",
     "iconv": "*",
     "jsonwebtoken": "*",
-    "lazy": "*",
     "method-override": "*",
     "mongoose": "*",
     "nconf": "*",
     "nodemailer": "0.7.1",
     "password-generator": "^2.0.2",
     "querystring": "*",
-    "redis": "*",
-    "string": "*",
     "toobusy": "*",
     "winston": "*"
   },
@@ -47,6 +43,6 @@
     "Node.JS backend"
   ],
   "author": "Anthony Akentiev",
-  "license": "Creative Commons Attribution-NonCommercial-NoDerivs 3.0 Unported License",
+  "license": "BSD-2-Clause",
   "gitHead": "6e64bb0c9477bcecd553c92506159304494aee91"
 }
