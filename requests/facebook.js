@@ -6,7 +6,7 @@ var assert = require('assert');
 var generatePassword = require('password-generator');
 var Facebook = require('facebook-node-sdk');
 
-app.post('/facebook_login/v1', function (request, res, next) {
+app.post('/api/v1/facebook_login', function (request, res, next) {
      if(typeof(request.body)==='undefined' || request.body===null){
           return next();
      } 

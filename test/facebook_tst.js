@@ -42,7 +42,7 @@ describe('Facebook login module',function(){
      });
 
      it('should not login if no token provided', function(done){
-          var url = '/facebook_login/v1';
+          var url = '/api/v1/facebook_login';
 
           var j = {
                user_id: id
